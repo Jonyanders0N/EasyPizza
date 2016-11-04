@@ -1,0 +1,43 @@
+
+  <ion-view ng-app="app" ng-controller="finalizarPedidoCtrl" title="Finalizar Pedido" id="page11">
+  <ion-nav-buttons side="right" class="has-header">
+    <button class="button button-icon icon No Icon"></button>
+  </ion-nav-buttons>
+  <ion-content padding="true" class="has-header">
+    <form id="finalizarPedido-form7" class="list">
+      <label class="item item-select" id="finalizarPedido-select2">
+        <span class="input-label">Mesa</span>
+        <select>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option></option>
+        </select>
+      </label>
+      <div class="spacer" style="width: 300px; height: 56px;"></div>
+      <button id="finalizarPedido-radio4" class="button button-block button-positive button-positive" name="paypalLogin" ng-click="botaoPaypal()">PayPal</button>
+      <div ng-show="mostrarPaypal">
+        <label  class="item item-input">
+          <input type="text" placeholder="Usuário">
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="Senha">
+        </label>
+        <button class="button button-block button-balanced">Pagar</button>
+      </div>
+      <button id="finalizarPedido-radio4" class="button button-block button-positive" name="paypalLogin" ng-click="botaoCc()">Cartão de crédito</button>
+      <div ng-show="mostrarCc">
+        <label  class="item item-input">
+          <input type="text" placeholder="Usuário">
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="Senha">
+        </label>
+        <button class="button button-block button-balanced">Pagar</button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>
+

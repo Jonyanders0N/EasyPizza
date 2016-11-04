@@ -1,0 +1,29 @@
+<ion-view title="Carrinho" id="page9" ng-app="app" ng-controller="finalizarPedidoCtrl">
+  <ion-content padding="true" class="has-header">
+  	<ul class="list">
+  		<li class="item" ng-repeat="item in pizzas">
+  		<div>
+   			<div style="float: left;">
+  				<p style="width: 30px; height: 30px; font-size: 30px; margin: 10px auto; ">{{qtd}}</p>
+  			</div>	 		
+  			<div style="float: left;">
+  			<p>{{item.nome}}</p>
+  			<p>{{item.descricao}}</p>
+  			<strong>{{item.valor}}</strong>
+  			</div>
+  			<div style="float: right;">	
+  			<button class="button button-small button-assertive icon ion-close"></button>
+  			<button class="button button-small button-dark icon ion-minus"></button>	
+  			<button class="button button-small button-balanced icon ion-plus"></button>
+  			</div>
+  		</div>
+  		</li>
+  			<div>
+  				<p>{{total}}</p>
+  			</div>
+  			<div>
+  				<button class="button button-block button-positive" ng-show="pizzas.length > 0" ng-click="expression">Finalizar pedido</button>
+  			</div>  		
+  	</ul>
+  </ion-content>
+</ion-view>
