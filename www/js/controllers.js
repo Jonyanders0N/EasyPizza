@@ -1,68 +1,53 @@
 angular.module('app.controllers', [])
   
-.controller('homeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('homeCtrl', ['HomeService', '$scope',function (HomeService, $scope) {
+
+		HomeService.obterHome().then(function(dados){
+			$scope.listaDeHome = dados;
+			console.log(dados[0]);
+		})
+
+}])
+   
+.controller('menuCtrl', ['$scope', '$stateParams',function ($scope, $stateParams) {
 
 
 }])
    
-.controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('bebidasCtrl', ['BebidaService', '$scope',function (BebidaService, $scope) {
+
+		BebidaService.obterBebidas().then(function(dados){
+			$scope.listaDeBebidas = dados;
+		})
+
+}])
+   
+.controller('diversosCtrl', ['DiversoService', '$scope',function (DiversoService, $scope) {
+
+		DiversoService.obterDiversos().then(function(dados){
+			$scope.listaDeDiversos = dados;
+		})
+
+}])
+   
+.controller('loginCtrl', ['$scope', '$stateParams',function ($scope, $stateParams) {
 
 
 }])
    
-.controller('bebidasCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('signupCtrl', ['$scope', '$stateParams',function ($scope, $stateParams) {
 
 
 }])
    
-.controller('diversosCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-   
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-   
-.controller('signupCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-   
-.controller('saboresCtrl', ['$scope', '$stateParams','ProdutoService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, ProdutoService) {
+.controller('saboresCtrl', ['ProdutoService','$scope',function ( ProdutoService, $scope) {
 
 	ProdutoService.obterProdutos().then(function(dados){
 		$scope.listaDeProdutos = dados;
 	})
-
 }])
    
-.controller('carrinhoCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('carrinhoCtrl', ['$scope', '$stateParams',function ($scope, $stateParams) {
 	$scope.qtd = 0;
 	$scope.pizzas = [
 		{nome: "Mussarela", descricao: "Pizza com 3 queijos", valor: "19.99"},
@@ -78,10 +63,7 @@ function ($scope, $stateParams) {
 	}
 }])
    
-.controller('finalizarPedidoCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('finalizarPedidoCtrl', ['$scope', '$stateParams',function ($scope, $stateParams) {
 	$scope.mostrarPaypal = false;
 	$scope.mostrarCc = false;
 	$scope.botaoPaypal = function(){

@@ -4,7 +4,7 @@ angular.module('app.services', [])
 
 }])
 
-.service('ProdutoService', [function($http){
+.service('ProdutoService', ['$http', function($http){
 
 	var url = "http://easypizza.azurewebsites.net/api/produto/all/1";
 
@@ -15,5 +15,45 @@ angular.module('app.services', [])
 			});
 		}
 	}
+}])
 
+.service('BebidaService', ['$http', function($http){
+
+	var url = "http://easypizza.azurewebsites.net/api/produto/all/2";
+
+	return{
+		obterBebidas: function(){
+			return $http.get(url).then(function(response){
+				return response.data;
+			});
+		}
+	}
+}])
+
+.service('DiversoService', ['$http', function($http){
+
+	var url = "http://easypizza.azurewebsites.net/api/produto/all/3";
+
+	return{
+		obterDiversos: function(){
+			return $http.get(url).then(function(response){
+				return response.data;
+			});
+		}
+	}
+}])
+
+.service('HomeService', ['$http', function($http){
+
+	var url = "http://easypizza.azurewebsites.net/api/produto/all/4";
+
+	return{
+		obterHome: function(){
+			return $http.get(url).then(function(response){
+				return response.data;
+			});
+		}
+	}
 }]);
+
+
