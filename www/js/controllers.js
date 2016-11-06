@@ -4,7 +4,6 @@ angular.module('app.controllers', [])
 
 		HomeService.obterHome().then(function(dados){
 			$scope.listaDeHome = dados;
-			console.log(dados[0]);
 		})
 
 }])
@@ -40,27 +39,16 @@ angular.module('app.controllers', [])
 
 }])
    
-.controller('saboresCtrl', ['ProdutoService','$scope',function ( ProdutoService, $scope) {
+.controller('saboresCtrl', ['ProdutoService','$scope', '$rootScope',function ( ProdutoService, $scope, $rootScope) {
 
 	ProdutoService.obterProdutos().then(function(dados){
 		$scope.listaDeProdutos = dados;
 	})
+
 }])
    
-.controller('carrinhoCtrl', ['$scope', '$stateParams',function ($scope, $stateParams) {
-	$scope.qtd = 0;
-	$scope.pizzas = [
-		{nome: "Mussarela", descricao: "Pizza com 3 queijos", valor: "19.99"},
-		{nome: "Calabresa", descricao: "Pizza com calabresa e queijo", valor: "24.99"},
-		{nome: "Portuguesa", descricao: "Pizza recheada com legumes", valor: "25.99"}
-	]
-	$scope.total = 0;
-	var valores = [];
-	$scope.calculaTotal = function(){
-		for(item in $scope.pizzas)valores.push(parseFloat(item.valor));
-		for(item in valores)$scope.total = $scope.total + item;	
-		return $scope.total;
-	}
+.controller('carrinhoCtrl', ['$scope', '$rootScope',function ($scope, $rootScope) {
+	
 }])
    
 .controller('finalizarPedidoCtrl', ['$scope', '$stateParams',function ($scope, $stateParams) {

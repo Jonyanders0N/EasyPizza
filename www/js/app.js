@@ -11,6 +11,79 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
   
 })
 
+.run(['$rootScope',
+function ($rootScope) {
+
+   $rootScope.pedido = new Array();
+   $rootScope.qtd = 0;
+   $rootScope.total = 0;
+   $rootScope.addCarrinho = function(item){
+    var itemPedido =   {
+            "Id"   : item.IdProduto,
+            "Nome" : item.Nome,
+            "Valor": item.Valor,
+            "Qtd"  : 1, //sempre iniciar com 1
+            "Total": item.Valor * 1
+        }
+        var achei = false;
+        for(var i = 0;i < $rootScope.pedido.length;i++){
+          if($rootScope.pedido[i].Id == item.IdProduto){
+            $rootScope.pedido[i].Qtd++;
+            $rootScope.pedido[i].Total = $rootScope.pedido[i].Qtd * $rootScope.pedido[i].Valor;
+            achei = true;
+          }
+        }
+        if(achei == false) $rootScope.pedido.push(itemPedido);
+        $rootScope.total = 0;
+        for(var i = 0; i < $rootScope.pedido.length; i++){
+            $rootScope.total += $rootScope.pedido[i].Total;
+        }
+  }
+    $rootScope.addQtd = function(item){
+    console.log($rootScope.pedido[0].Id);
+
+    for(var i = 0;i < $rootScope.pedido.length;++i){
+      if($rootScope.pedido[i].Id === item.Id)
+      {
+        $rootScope.pedido[i].Qtd++;
+        $rootScope.pedido[i].Total = $rootScope.pedido[i].Valor * $rootScope.pedido[i].Qtd;
+        break;
+      }
+    }
+    $rootScope.total = 0;
+        for(var i = 0; i < $rootScope.pedido.length; i++){
+            $rootScope.total += $rootScope.pedido[i].Total;
+        }
+  }
+
+  $rootScope.removeQtd = function(item){
+    for(var i = 0;i < $rootScope.pedido.length;i++){
+      if($rootScope.pedido[i].Id === item.Id){
+        if($rootScope.pedido[i].Qtd > 1){
+          $rootScope.pedido[i].Qtd--;
+          $rootScope.pedido[i].Total = $rootScope.pedido[i].Valor * $rootScope.pedido[i].Qtd;  
+          $rootScope.total = 0;
+          for(var i = 0; i < $rootScope.pedido.length; i++){
+            $rootScope.total += $rootScope.pedido[i].Total;
+          }        
+        }
+      }
+    }
+  } 
+
+  $rootScope.removeItem = function(item){
+    for(var i = 0;i < $rootScope.pedido.length;i++){
+      if($rootScope.pedido[i].Id === item.Id){
+        $rootScope.pedido.splice(i,1);
+        $rootScope.total = 0;
+        for(var i = 0; i < $rootScope.pedido.length; i++){
+          $rootScope.total += $rootScope.pedido[i].Total;
+        }           
+      }
+    }
+  }
+}])
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

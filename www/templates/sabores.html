@@ -1,4 +1,4 @@
-<ion-view title="Sabores" id="page8" ng-app="app">
+<ion-view title="Sabores" id="page8">
   <ion-content padding="true" class="has-header">
     <ion-list id="sabores">
       <label class="item item-input">
@@ -12,7 +12,7 @@
           <p>{{item.Descricao}}</p>
           <strong>{{item.Valor}}</strong>
           <div style="float: right;">
-            <button class="button  button-small button-balanced ionic ion-plus"></button>
+            <button class="button  button-small button-balanced ionic ion-plus" ng-click="addCarrinho({{item}})"></button>
           </div>
         </div>
       </div>
