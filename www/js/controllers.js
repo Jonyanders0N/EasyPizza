@@ -62,15 +62,15 @@ angular.module('app.controllers', [])
 	}
 }])
 
-.controller('carrinhoCtrl',function(LoginService, $scope, $ionicPopup, $timeout, $rootScope) {
-
-  	$scope.finalizarPedido = function() {
+.controller('carrinhoCtrl',['LoginService', '$scope', '$ionicPopup', '$timeout', '$rootScope',function(LoginService, $scope, $ionicPopup, $timeout, $rootScope) {  
+      $scope.showPopup = function() {
 
         $scope.data = {}
+
         var myPopup = $ionicPopup.show({
-          template: ' <input type="text" ng-model="data.user" placeholder="Digite o Login"> <br> <input type="password" ng-model="data.password" placeholder="Digite a Senha"> ',
-          title: 'Faça o Login!',
-          subTitle: 'É preciso estar logado!',
+          template: '<input placeholder="Email" type="text" ng-model="data.Email">   <br> <input placeholder="Senha" type="password" ng-model="data.confirmPassword" > ',
+          title: 'Login',
+          subTitle: 'Efetue login para finalizar o pedido',
 
           scope: $scope,
           buttons: [
@@ -79,35 +79,29 @@ angular.module('app.controllers', [])
               text: '<b>Logar</b>',
               type: 'button-positive',
               onTap: function(e) {
-                if (!$scope.data.user) {
+              	console.log($scope.data.Email);
+                if (!$scope.data.Email) {
                   //don't allow the user to close unless he enters wifi password
                   e.preventDefault();
-                  $scope.usuario = {
-                  	"Email": data.user,
-                  	"Senha": data.password
-                  }             
                 } else {
                   return $scope.data;
                 }
               }
             },
           ]
-        });
-        myPopup.then(function() {
-        LoginService.obterDados($scope.usuario).success(function(){
-        	$rootScope.login === true;
-        	console.log("teste");
-    	})
-          if($rootScope.login === true)
-          { 
-          	console.log("Login Efetuado");
-          }
-          else
-          {
-            console.log('Login ou Senha incorreto');
-          }
+      });
+        myPopup.then(function(res){
+        	var login = {"Email": res.Email, "Senha": res.confirmPassword};
+        	LoginService.obterDados(login)
+        	.success(function(data){
+        		$rootScope.login = true;
+        		$rootScope.user = data;
+        		console.log($rootScope.user);
+        	})
+        	.error(function(msg){
+        		console.log("Não foi dessa vez");
+        	})
+        })
 
-        });
-
-      };
-});
+        };
+}]);

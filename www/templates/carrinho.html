@@ -8,7 +8,7 @@
   			</div>	 		
   			<div style="float: left;">
     			<p>{{item.Nome}}</p>
-    			<strong>{{item.Total.toFixed(2)}}</strong>
+    			<strong>R${{item.Total.toFixed(2)}}</strong>
   			</div>
   			<div style="float: right;">	
     			<button class="button button-small button-assertive icon ion-close" ng-click="removeItem({{item}})"></button>
@@ -18,10 +18,10 @@
   		</div>
   		</li>
   			<div style="float: right; margin: 15px; font-size: 30px;">
-  				<p ng-show="pedido.length > 0">Total: {{total.toFixed(2)}}</p>
+  				<p ng-show="pedido.length > 0">Total: R${{total.toFixed(2)}}</p>
   			</div>
   			<div>
-  				<button class="button button-block button-positive" ng-show="pedido.length > 0" ng-click="finalizarPedido()">Finalizar pedido</button>
+  				<button class="button button-block button-positive" ng-show="pedido.length > 0" ng-click="showPopup()">Finalizar Pedido</button>
   			</div>  		
   	</ul>
   </ion-content>

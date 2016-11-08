@@ -56,14 +56,23 @@ angular.module('app.services', [])
 	}
 }])
 
-.service('LoginService', ['$http', function($http){
+.service('LoginService', ['$http', '$httpParamSerializer', function($http, $httpParamSerializer){
 
 	var url = "http://easypizza.azurewebsites.net/api/usuario/get";
 
 	return{
-		obterDados: function(data){
-			return $http.post(url, data);
+		obterDados: function(dados){
+		return $http({
+		    method: "POST",
+		    url : 'http://easypizza.azurewebsites.net/api/usuario/get',
+		    data: $httpParamSerializer(dados),
+		    headers: {
+		        "Content-Type" : "application/x-www-form-urlencoded"
+		    }
+		    })
 		}
 	}
 }]);
+
+
 
