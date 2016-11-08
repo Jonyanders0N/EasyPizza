@@ -21,7 +21,7 @@
   				<p ng-show="pedido.length > 0">Total: {{total.toFixed(2)}}</p>
   			</div>
   			<div>
-  				<button class="button button-block button-positive" ng-show="pedido.length > 0">Finalizar pedido</button>
+  				<button class="button button-block button-positive" ng-show="pedido.length > 0" ng-click="finalizarPedido()">Finalizar pedido</button>
   			</div>  		
   	</ul>
   </ion-content>

@@ -14,6 +14,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 .run(['$rootScope',
 function ($rootScope) {
 
+   $rootScope.login = false; 
    $rootScope.pedido = new Array();
    $rootScope.qtd = 0;
    $rootScope.total = 0;

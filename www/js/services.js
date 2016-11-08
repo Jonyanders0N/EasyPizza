@@ -54,6 +54,16 @@ angular.module('app.services', [])
 			});
 		}
 	}
-}]);
+}])
 
+.service('LoginService', ['$http', function($http){
+
+	var url = "http://easypizza.azurewebsites.net/api/usuario/get";
+
+	return{
+		obterDados: function(data){
+			return $http.post(url, data);
+		}
+	}
+}]);
 

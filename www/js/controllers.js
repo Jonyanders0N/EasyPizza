@@ -47,11 +47,9 @@ angular.module('app.controllers', [])
 
 }])
    
-.controller('carrinhoCtrl', ['$scope', '$rootScope',function ($scope, $rootScope) {
-	
-}])
    
 .controller('finalizarPedidoCtrl', ['$scope', '$stateParams',function ($scope, $stateParams) {
+	//Código para mudar estado dos botões de opções de pagamento
 	$scope.mostrarPaypal = false;
 	$scope.mostrarCc = false;
 	$scope.botaoPaypal = function(){
@@ -63,4 +61,53 @@ angular.module('app.controllers', [])
 		$scope.mostrarPaypal = false;
 	}
 }])
- 
+
+.controller('carrinhoCtrl',function(LoginService, $scope, $ionicPopup, $timeout, $rootScope) {
+
+  	$scope.finalizarPedido = function() {
+
+        $scope.data = {}
+        var myPopup = $ionicPopup.show({
+          template: ' <input type="text" ng-model="data.user" placeholder="Digite o Login"> <br> <input type="password" ng-model="data.password" placeholder="Digite a Senha"> ',
+          title: 'Faça o Login!',
+          subTitle: 'É preciso estar logado!',
+
+          scope: $scope,
+          buttons: [
+            { text: 'Cancelar' },
+            {
+              text: '<b>Logar</b>',
+              type: 'button-positive',
+              onTap: function(e) {
+                if (!$scope.data.user) {
+                  //don't allow the user to close unless he enters wifi password
+                  e.preventDefault();
+                  $scope.usuario = {
+                  	"Email": data.user,
+                  	"Senha": data.password
+                  }             
+                } else {
+                  return $scope.data;
+                }
+              }
+            },
+          ]
+        });
+        myPopup.then(function() {
+        LoginService.obterDados($scope.usuario).success(function(){
+        	$rootScope.login === true;
+        	console.log("teste");
+    	})
+          if($rootScope.login === true)
+          { 
+          	console.log("Login Efetuado");
+          }
+          else
+          {
+            console.log('Login ou Senha incorreto');
+          }
+
+        });
+
+      };
+});
