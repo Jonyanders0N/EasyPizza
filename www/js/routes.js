@@ -96,6 +96,16 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('menu.pedidos', {
+    url: '/page12',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/pedidos.html',
+        controller: 'pedidosCtrl'
+      }
+    }
+  })
+
 $urlRouterProvider.otherwise('/side-menu21/pageHome')
 
   

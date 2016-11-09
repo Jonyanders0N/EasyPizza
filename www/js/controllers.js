@@ -12,7 +12,15 @@ angular.module('app.controllers', [])
 
 
 }])
-   
+  
+.controller('pedidosCtrl', ['PedidoService', '$scope', '$rootScope',function (PedidoService, $scope, $rootScope) {
+
+		PedidoService.getPedido($rootScope.user.IdProduto).then(function(dados){
+			$scope.listaDePedidos = dados;
+		})
+
+}])
+
 .controller('bebidasCtrl', ['BebidaService', '$scope',function (BebidaService, $scope) {
 
 		BebidaService.obterBebidas().then(function(dados){
