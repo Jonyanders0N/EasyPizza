@@ -1,3 +1,16 @@
+<style>
+  .figura{
+    padding-left: 80px;
+    padding-top: 50px;
+  }
+  .figura img{
+    max-width:200px;
+    max-height:150px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+  }
+</style>
 <ion-view title="Carrinho" id="page9">
   <ion-content padding="true" class="has-header">
   	<ul class="list">
@@ -22,7 +35,11 @@
   			</div>
   			<div>
   				<button class="button button-block button-positive" ng-show="pedido.length > 0" ng-click="showPopup()">Finalizar Pedido</button>
-  			</div>  		
+  			</div>
+        <div style="font-size: 27px; padding-top: 100px; margin: auto;" ng-show="pedido.length == 0">
+          <strong>Nenhum item no carrinho</strong>
+          <div class="figura"><img src="https://image.freepik.com/icones-gratis/carrinho-de-compras-de-design-de-linhas-horizontais_318-50800.jpg"></div>
+        </div>  		
   	</ul>
   </ion-content>
 </ion-view>

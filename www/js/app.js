@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services',])
+angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives','app.services'])
 
 .config(function($ionicConfigProvider){
   
@@ -15,7 +15,7 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
 function ($rootScope) {
    $rootScope.user = null;
    $rootScope.login = false; 
-   $rootScope.pedido = new Array();
+   $rootScope.pedido = [];
    $rootScope.qtd = 0;
    $rootScope.total = 0;
    $rootScope.addCarrinho = function(item){
@@ -55,6 +55,7 @@ function ($rootScope) {
         for(var i = 0; i < $rootScope.pedido.length; i++){
             $rootScope.total += $rootScope.pedido[i].Total;
         }
+
   }
 
   $rootScope.removeQtd = function(item){

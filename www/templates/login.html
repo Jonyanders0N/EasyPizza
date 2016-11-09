@@ -4,14 +4,14 @@
     <form id="login-form1" class="list">
       <ion-list id="login-list7">
         <label class="item item-input" id="login-input1">
-          <input type="text" placeholder="Email">
+          <input type="text" placeholder="Email" ng-model="loginEmail">
         </label>
         <label class="item item-input" id="login-input2">
-          <input type="password" placeholder="Senha">
+          <input type="password" placeholder="Senha" ng-model="loginPassword">
         </label>
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
-      <button id="login-button6" class="button button-positive  button-block">Entrar</button>
+      <button id="login-button6" class="button button-positive  button-block" ng-click="fazerLogin(loginEmail,loginPassword)">Entrar</button>
       <a ui-sref="menu.signup" id="login-button7" class="button button-royal  button-block button-clear">Or create an account</a>
     </form>
   </ion-content>

@@ -4,7 +4,7 @@
     <button class="button button-icon icon No Icon"></button>
   </ion-nav-buttons>
   <ion-content padding="true" class="has-header">
-    <form id="finalizarPedido-form7" class="list">
+    <form id="finalizarPedido-form7" class="list" name="formControl">
       <label class="item item-select" id="finalizarPedido-select2">
         <span class="input-label">Mesa</span>
         <select>
@@ -17,25 +17,26 @@
         </select>
       </label>
       <div class="spacer" style="width: 300px; height: 56px;"></div>
-      <button id="finalizarPedido-radio4" class="button button-block button-positive button-positive" name="paypalLogin" ng-click="botaoPaypal()">PayPal</button>
-      <div ng-show="mostrarPaypal">
+      <button id="finalizarPedido-radio4" class="button button-block button-positive button-positive" ng-click="botaoPagSeguro()">Pag Seguro</button>
+      <div ng-show="mostrarPagSeguro">
         <label  class="item item-input">
-          <input type="text" placeholder="Usuário">
+          <input type="text" placeholder="Usuário" ng-model="ps.Name" >
         </label>
         <label class="item item-input">
-          <input type="password" placeholder="Senha">
+          <input type="password" placeholder="Senha" ng-model="ps.Password" >
         </label>
-        <button class="button button-block button-balanced">Pagar</button>
+        <button class="button button-block button-balanced" 
+        ng-click="addPedido()" ng-disabled="!ps.Name || !ps.Password">Pagar</button>
       </div>
-      <button id="finalizarPedido-radio4" class="button button-block button-positive" name="paypalLogin" ng-click="botaoCc()">Cartão de crédito</button>
+      <button id="finalizarPedido-radio5" class="button button-block button-positive" ng-click="botaoCc()" >Cartão de crédito</button>
       <div ng-show="mostrarCc">
         <label  class="item item-input">
-          <input type="text" placeholder="Usuário">
+          <input type="text" placeholder="Usuário" ng-model="cc.Name" >
         </label>
         <label class="item item-input">
-          <input type="password" placeholder="Senha">
+          <input type="password" placeholder="Senha" ng-model="cc.Password" >
         </label>
-        <button class="button button-block button-balanced">Pagar</button>
+        <button class="button button-block button-balanced" ng-click="addPedido()" ng-disabled="!cc.Name || !cc.Password">Pagar</button>
       </div>
     </form>
   </ion-content>

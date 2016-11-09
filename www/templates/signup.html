@@ -2,29 +2,32 @@
   <ion-content padding="true" class="has-header">
     <form id="signup-form2" class="list">
       <ion-list id="signup-list8">
-        <label class="item item-input" id="signup-input6">
-          <input type="text" placeholder="Nome">
+        <label class="item item-input" id="signup-input6"">
+          <input type="text" placeholder="Nome" ng-model="sNome">
         </label>
         <label class="item item-input" id="signup-input3">
-          <input type="email" placeholder="E-mail">
+          <input type="text" placeholder="E-mail" ng-model="sEmail">
         </label>
         <label class="item item-input" id="signup-input4">
-          <input type="password" placeholder="Senha">
+          <input type="password" placeholder="Senha" ng-model="sSenha">
         </label>
         <label class="item item-input" id="signup-input5">
-          <input type="password" placeholder="Confirmar Senha">
+          <input type="password" placeholder="Confirmar Senha" ng-model="sCSenha">
         </label>
       </ion-list>
       <label class="item item-input" id="signup-input7">
-        <input type="text" placeholder="CPF">
+        <input type="text" placeholder="CPF" ng-model="sCPF">
       </label>
       <label class="item item-input" id="signup-input8">
-        <input type="text" placeholder="RG">
+        <input type="text" placeholder="RG" ng-model="sRG">
       </label>
+      <label class="item item-input" id="signup-input9">
+        <input type="text" placeholder="RG" ng-model="sDataN">
+      </label>     
     </form>
     <div id="signup-button-bar1" class="button-bar">
-      <button id="signup-button12" class="button button-positive  button-block">Ok</button>
-      <button id="signup-button13" class="button button-assertive  button-block">Cancelar</button>
+      <button id="signup-button12" class="button button-positive  button-block" ng-click="signupUser(sNome,sEmail,sSenha,sCPF,sRG,sDataN)">Ok</button>
+      <button id="signup-button13" class="button button-assertive  button-block" ng-click="sairPagina()">Cancelar</button>
     </div>
   </ion-content>
 </ion-view>

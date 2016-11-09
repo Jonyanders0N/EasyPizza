@@ -72,6 +72,41 @@ angular.module('app.services', [])
 		    })
 		}
 	}
+}])
+
+.service('SignupService', ['$http', '$httpParamSerializer', function($http, $httpParamSerializer){
+
+	return{
+		addUser: function(dados){
+		return $http({
+		    method: "POST",
+		    url : 'http://easypizza.azurewebsites.net/api/usuario/add',
+		    data: $httpParamSerializer(dados),
+		    headers: {
+		        "Content-Type" : "application/x-www-form-urlencoded"
+		    }
+		    })
+		}
+	}
+}])
+
+.service('PedidoService', ['$http', '$httpParamSerializer', function($http, $httpParamSerializer){
+
+	return{
+		addPedido: function(dados){
+		return $http({
+		    method: "POST",
+		    url : 'http://easypizza.azurewebsites.net/api/pedido/add',
+		    data: $httpParamSerializer(dados),
+		    headers: {
+		        "Content-Type" : "application/x-www-form-urlencoded"
+		    }
+		    })
+		},
+		getPedido: function(id){
+			return $http.get("http://easypizza.azurewebsites.net/api/pedido/get/" + id)
+		}
+	}
 }]);
 
 
