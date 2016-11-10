@@ -1,8 +1,11 @@
 <ion-view title="Pedidos" id="page8">
   <ion-content padding="true" class="has-header">
+  <div style="font-size: 20px; padding-top: 100px; padding-left: 30px; margin: auto;" ng-show="!login">
+      <strong>Faça login para consultar seus pedidos!</strong>
+  </div>
     <ul class="list" ng-repeat="item in listaDePedidos">
         <li class="item">
-          <p>Pedido:#{{item.IdPedido}}</p><p>Data:{{item.DataPedido}}</p><p>Total:{{item.Total}}</p>
+          <strong>Pedido:#{{item.IdPedido}}</strong><p>Data:{{item.DataPedido}}</p><p>Total:{{item.Total}}</p>
         </li>
     </ul>
   </ion-content>

@@ -13,11 +13,14 @@
           <option>3</option>
           <option>4</option>
           <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>                              
           <option></option>
         </select>
       </label>
       <div class="spacer" style="width: 300px; height: 56px;"></div>
-      <button id="finalizarPedido-radio4" class="button button-block button-positive button-positive" ng-click="botaoPagSeguro()">Pag Seguro</button>
+      <ion-radio id="finalizarPedido-radio4"  ng-click="botaoPagSeguro()">Pag Seguro</ion-radio>
       <div ng-show="mostrarPagSeguro">
         <label  class="item item-input">
           <input type="text" placeholder="Usuário" ng-model="ps.Name" >
@@ -28,15 +31,31 @@
         <button class="button button-block button-balanced" 
         ng-click="addPedido()" ng-disabled="!ps.Name || !ps.Password">Pagar</button>
       </div>
-      <button id="finalizarPedido-radio5" class="button button-block button-positive" ng-click="botaoCc()" >Cartão de crédito</button>
+      <ion-radio id="finalizarPedido-radio5" ng-click="botaoCc()" >Cartão de crédito</ion-radio>
       <div ng-show="mostrarCc">
-        <label  class="item item-input">
-          <input type="text" placeholder="Usuário" ng-model="cc.Name" >
+        <label class="item item-select">
+          <span class="input-label">Formas de pagamento</span>
+          <select>
+            <option >1X Sem juros</option>
+            <option >2X Sem juros</option>
+            <option >3X Sem juros</option>
+            <option >4X Sem juros</option>
+            <option >5X Sem juros</option>         
+          </select>
         </label>
         <label class="item item-input">
-          <input type="password" placeholder="Senha" ng-model="cc.Password" >
+        <input type="text" placeholder="Nome" ng-model="cc.nome"></input>
         </label>
-        <button class="button button-block button-balanced" ng-click="addPedido()" ng-disabled="!cc.Name || !cc.Password">Pagar</button>
+        <label class="item item-input">
+        <input type="text" placeholder="Número do Cartão" ng-model="cc.card"></input>
+        </label>
+        <label class="item item-input">
+        <input type="text" placeholder="Código de Segurança" ng-model="cc.code"></input>
+        </label>
+        <label class="item item-input">
+        <input type="text" placeholder="Validade (mm/aa)" ng-model="cc.validade"> 
+        </label>      
+        <button class="button button-block button-balanced" ng-click="addPedido()" ng-disabled="!cc.nome || !cc.card || !cc.code || !cc.validade">Pagar</button>
       </div>
     </form>
   </ion-content>

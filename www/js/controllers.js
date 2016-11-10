@@ -14,15 +14,17 @@ angular.module('app.controllers', [])
 }])
   
 .controller('pedidosCtrl', ['PedidoService', '$scope', '$rootScope',function (PedidoService, $scope, $rootScope) {
-		
+	if($rootScope.login){
 		console.log($rootScope.user.IdUsuario);
 		$scope.listaDePedidos = [];
 		PedidoService.getPedido($rootScope.user.IdUsuario).then(function(dados){
 			$scope.listaDePedidos = dados;
 			console.log(dados);
 		})
-
-		console.log($scope.listaDePedidos[0]);
+	}else{
+		
+		console.log("else");
+	}
 
 
 }])
