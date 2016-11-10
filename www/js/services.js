@@ -104,7 +104,10 @@ angular.module('app.services', [])
 		    })
 		},
 		getPedido: function(id){
-			return $http.get("http://easypizza.azurewebsites.net/api/pedido/get/" + id)
+			return $http.get("http://easypizza.azurewebsites.net/api/pedido/get/"+id)
+			.then(function(response){
+				return response.data;
+			});
 		}
 	}
 }]);

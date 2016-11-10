@@ -14,10 +14,16 @@ angular.module('app.controllers', [])
 }])
   
 .controller('pedidosCtrl', ['PedidoService', '$scope', '$rootScope',function (PedidoService, $scope, $rootScope) {
-
-		PedidoService.getPedido($rootScope.user.IdProduto).then(function(dados){
+		
+		console.log($rootScope.user.IdUsuario);
+		$scope.listaDePedidos = [];
+		PedidoService.getPedido($rootScope.user.IdUsuario).then(function(dados){
 			$scope.listaDePedidos = dados;
+			console.log(dados);
 		})
+
+		console.log($scope.listaDePedidos[0]);
+
 
 }])
 
@@ -61,7 +67,8 @@ angular.module('app.controllers', [])
     		console.log($rootScope.user);
     		console.log($scope.login);	
     		$scope.showAlert('Login efetuado com sucesso!');
-    		$state.go("menu.carrinho");	
+    		$scope.loginEmail = "";
+    		$scope.loginPassword = "";
     	})
     	.error(function(msg){
     		console.log("Não foi dessa vez");
@@ -165,6 +172,18 @@ angular.module('app.controllers', [])
 
     	.error(function(msg){
     		console.log("Não foi dessa vez");
+		    $scope.enviarAlert = function() {
+		      var alertPopup = $ionicPopup.alert({
+		        title: 'Pedido não Realizado!',
+		        template: 'Houve um erro na elaboração do seu pedido!',
+		      });
+		      alertPopup.then(function(res) {
+		        console.log('Thanks');
+		        $rootScope.pedido = [];
+		        $state.go("menu.carrinho");
+		      });
+		    };
+		    $scope.enviarAlert();      		
     	})
 	}
 }])
